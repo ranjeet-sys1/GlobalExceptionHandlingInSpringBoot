@@ -22,8 +22,20 @@ public class StudentController {
     public ResponseEntity getStudents(){
         return new ResponseEntity(studentService.getStudents(), HttpStatus.FOUND);
     }
-    @PostMapping("/get/{u}")
-    public ResponseEntity getStudent(@PathVariable UUID uuid){
-        return new ResponseEntity(studentService.getStudent(uuid), HttpStatus.FOUND);
+    @GetMapping("/get/{id}")
+    public ResponseEntity getStudent(@PathVariable Long id){
+        return new ResponseEntity(studentService.getStudent(id), HttpStatus.OK);
     }
+    @DeleteMapping("/get/{id}")
+    public ResponseEntity DeleteStudent(@PathVariable Long id){
+        studentService.deleteStudent(id);
+        return new ResponseEntity("Student of id: "+id+" deleted", HttpStatus.OK);
+    }
+    @PostMapping("/update/{id}")
+    public ResponseEntity updateStudent(@PathVariable Long id, @RequestBody Student student){
+        Student updatedStudent = studentService.update(id, student);
+        return new ResponseEntity(updatedStudent, HttpStatus.OK);
+    }
+
+
 }

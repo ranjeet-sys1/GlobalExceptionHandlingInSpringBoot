@@ -7,6 +7,9 @@ import org.hibernate.annotations.Type;
 import org.hibernate.id.UUIDGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Size;
+import java.math.BigInteger;
 import java.util.Locale;
 import java.util.UUID;
 @Entity
@@ -32,5 +35,7 @@ public class Student {
     @Id
     @GeneratedValue
     private Long studentId;
+    @Size(min=2, message="character must be size of at least 2")
     private String name;
+    private BigInteger USN;
 }

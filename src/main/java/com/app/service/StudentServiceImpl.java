@@ -7,10 +7,8 @@ import com.app.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.math.BigInteger;
+import java.util.*;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -18,6 +16,7 @@ public class StudentServiceImpl implements StudentService{
     private StudentRepository studentRepository;
     @Override
     public Student save(Student student) {
+        student.setUSN(BigInteger.valueOf(new Random().nextInt(10000)));
         return studentRepository.save(student);
     }
 
